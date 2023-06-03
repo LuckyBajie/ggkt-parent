@@ -53,7 +53,8 @@ public class CodeGet {
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
 
-        strategy.setInclude("teacher");
+        // note: 配置表名，多个表使用逗号进行分割
+        strategy.setInclude("video");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
 

@@ -28,10 +28,15 @@ public class Result<T> {
         return result;
     }*/
 
+    public static <T> Result<T> ok() {
+
+        return ok(null);
+    }
+
     // 成功的方法，没有data的数据
     public static <T> Result<T> ok(T data) {
         Result<T> result = new Result<>();
-        result.setCode(200);
+        result.setCode(20000);
         result.setMessage("成功");
         result.setData(data);
         return result;
@@ -39,7 +44,7 @@ public class Result<T> {
     // 失败的方法
     public static <T> Result<T> fail(T data) {
         Result<T> result = new Result<>();
-        result.setCode(201);
+        result.setCode(20001);
         result.setMessage("失败");
         result.setData(data);
         return result;

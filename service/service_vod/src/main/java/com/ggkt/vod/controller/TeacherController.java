@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ggkt.entity.model.vod.Teacher;
 import com.ggkt.entity.vo.vod.TeacherQueryVo;
-import com.ggkt.exception.GgktException;
 import com.ggkt.result.Result;
 import com.ggkt.vod.service.TeacherService;
 import io.swagger.annotations.Api;
@@ -29,6 +28,7 @@ import java.util.List;
 @Api(tags = "讲师管理")
 @RestController
 @RequestMapping("admin/vod/teacher")
+@CrossOrigin
 public class TeacherController {
 
     @Resource
@@ -37,11 +37,6 @@ public class TeacherController {
     @ApiOperation("查询所有讲师")
     @GetMapping("findAll")
     public Result findAllTeacher(){
-        try {
-            int a = 10/0;
-        }catch(Exception e) {
-            throw new GgktException(20001,"出现自定义异常");
-        }
         return Result.ok(teacherService.list());
     }
 
@@ -50,7 +45,7 @@ public class TeacherController {
     public Result removeById(
             @ApiParam(name = "id", value = "ID", required = true)
             @PathVariable String id){
-        return teacherService.removeById(id) ? Result.ok(null).message("delete success").code(205)
+        return teacherService.removeById(id) ? Result.ok(null).message("删除成功")
                 : Result.fail(null);
     }
 
@@ -111,7 +106,7 @@ public class TeacherController {
         return Result.ok(null);
     }
 
-    @ApiOperation(value = "根据id列表删除")
+    @ApiOperation(value = "批量删除")
     @DeleteMapping("batchRemove")
     public Result batchRemove(@RequestBody List<Long> idList) {
         teacherService.removeByIds(idList);
