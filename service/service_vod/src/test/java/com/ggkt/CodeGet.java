@@ -22,7 +22,8 @@ public class CodeGet {
         String projectPath = System.getProperty("user.dir");
         //gc.setOutputDir(projectPath + "/src/main/java");
         // note：需要改动的地方
-        gc.setOutputDir("C:\\mysoftware\\java_project_learn\\ggkt-parent\\service\\service_vod"+"/src/main/java");
+        // gc.setOutputDir("C:\\mysoftware\\java_project_learn\\ggkt-parent\\service\\service_vod"+"/src/main/java");
+        gc.setOutputDir("C:\\mysoftware\\java_project_learn\\ggkt-parent\\service\\service_wechat"+"/src/main/java");
 
         gc.setServiceName("%sService");	//去掉Service接口的首字母I
         gc.setAuthor("lff");
@@ -32,7 +33,7 @@ public class CodeGet {
         // 3、数据源配置
         // note：需要改动的地方
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://192.168.1.158:3306/glkt_vod?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
+        dsc.setUrl("jdbc:mysql://192.168.1.158:3306/glkt_wechat?useUnicode=true&characterEncoding=UTF-8&useSSL=false");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("root");
@@ -42,7 +43,7 @@ public class CodeGet {
         // 4、包配置
         // note：需要改动的地方
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("vod"); //模块名
+        pc.setModuleName("wechat"); //模块名
         pc.setParent("com.ggkt");
         pc.setController("controller");
         pc.setEntity("entity");
@@ -54,7 +55,7 @@ public class CodeGet {
         StrategyConfig strategy = new StrategyConfig();
 
         // note: 配置表名，多个表使用逗号进行分割
-        strategy.setInclude("video_visitor");
+        strategy.setInclude("menu");
 
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
 

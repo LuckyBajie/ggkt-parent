@@ -32,7 +32,7 @@ import java.util.Map;
 @Api(tags = "用户接口")
 @RestController
 @RequestMapping("admin/vod/user")
-@CrossOrigin
+// @CrossOrigin
 public class UserLoginController {
 
     @Resource
