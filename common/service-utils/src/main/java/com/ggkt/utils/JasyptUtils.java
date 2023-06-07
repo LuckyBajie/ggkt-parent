@@ -5,11 +5,28 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.jasypt.iv.NoIvGenerator;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class JasyptUtils {
+
+    private final static String YOUR_SALT_PASSWORD = "";
+    private final static List<String> SOURCE_STRS = new ArrayList<>();
+
     public static void main(String[] args) {
-         PBEWITHHMACSHA512ANDAES_256();
+        initData();
+        PBEWITHHMACSHA512ANDAES_256();
 //        PBEWithMD5AndDES();
 
+    }
+
+    private static void initData() {
+        SOURCE_STRS.addAll(Arrays.asList(
+                "",
+                ""
+        ));
     }
 
     private static void PBEWITHHMACSHA512ANDAES_256() {
@@ -21,7 +38,7 @@ public class JasyptUtils {
         // config.setAlgorithm("PBEWithMD5AndDES");
         config.setAlgorithm("PBEWITHHMACSHA512ANDAES_256");
         // 盐值
-        config.setPassword("#YOUR_SALT_PASSWORD#");
+        config.setPassword(YOUR_SALT_PASSWORD);
         config.setKeyObtentionIterations("1000");
         config.setPoolSize("1");
         config.setProviderName("SunJCE");
@@ -30,15 +47,15 @@ public class JasyptUtils {
         config.setStringOutputType("base64");
         encryptor.setConfig(config);
         // 加密明文
-        String encryptValue1 = encryptor.encrypt("#YOUR_KEY#");
-        String encryptValue2 = encryptor.encrypt("#YOUR_SECRET#");
-        System.out.println(encryptValue1);
-        System.out.println(encryptValue2);
+        List<String> encryptedList = SOURCE_STRS.stream().map(encryptor::encrypt)
+                .collect(Collectors.toList());
         // 解密密文
-        String decryptValue1 = encryptor.decrypt(encryptValue1);
-        String decryptValue2 = encryptor.decrypt(encryptValue2);
-        System.out.println(decryptValue1);
-        System.out.println(decryptValue2);
+        List<String> decryptedList = encryptedList.stream().map(encryptor::decrypt)
+                .collect(Collectors.toList());
+        System.out.println("原串：" + SOURCE_STRS);
+        System.out.println("加密串：" + encryptedList);
+        System.out.println("解密串：" + decryptedList);
+        ;
     }
 
     /**

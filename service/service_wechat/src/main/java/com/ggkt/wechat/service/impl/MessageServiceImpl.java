@@ -112,7 +112,7 @@ public class MessageServiceImpl implements MessageService {
             articles.append("<Title><![CDATA["+course.getTitle()+"]]></Title>");
             articles.append("<Description><![CDATA["+course.getTitle()+"]]></Description>");
             articles.append("<PicUrl><![CDATA["+course.getCover()+"]]></PicUrl>");
-            articles.append("<Url><![CDATA[http://glkt.atguigu.cn/#/liveInfo/"+course.getId()+"]]></Url>");
+            articles.append("<Url><![CDATA[http://ggtkbackend.vipgz1.91tunnel.com/#/liveInfo/"+course.getId()+"]]></Url>");
             articles.append("</item>");
 
             text.append("<xml>");
